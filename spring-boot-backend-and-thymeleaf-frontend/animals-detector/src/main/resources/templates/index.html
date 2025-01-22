@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klasyfikator Obrazów AI</title>
+    <!-- Dodanie Tailwind CSS z CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+<div class="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold text-center text-gray-800">Klasyfikator Obrazów AI</h1>
+    <form action="/api/predict" method="post" enctype="multipart/form-data" class="mt-6">
+        <label for="fileInput" class="block text-sm font-medium text-gray-700">Wybierz zdjęcie:</label>
+        <input type="file" id="fileInput" name="file" accept="image/*" required
+               class="block w-full mt-2 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <button type="submit"
+                class="w-full mt-4 px-4 py-2 bg-indigo-600 text-white font-medium text-sm rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            Prześlij
+        </button>
+    </form>
+
+    <!-- Wyniki predykcji -->
+    <div id="results" th:if="${results}" class="mt-6">
+        <h3 class="text-lg font-semibold text-gray-700">Wyniki Predykcji:</h3>
+        <div th:each="result : ${results}" class="mt-4 p-4 bg-gray-50 rounded-lg shadow-sm">
+            <h4 th:text="'Model: ' + ${result.key}" class="font-medium text-gray-800"></h4>
+            <p th:text="'Wynik: ' + ${result.value.prediction}" class="text-gray-600"></p>
+            <p th:text="'Prawdopodobieństwo: ' + ${result.value.probability} + '%'" class="text-gray-600"></p>
+        </div>
+    </div>
+
+    <!-- Obsługa błędów -->
+    <div id="error" th:if="${error}" class="mt-6 text-red-600 font-medium">
+        <p th:text="${error}"></p>
+    </div>
+
+    <button class="w-full mt-6 px-4 py-2 bg-green-600 text-white font-medium text-sm rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+            onclick="window.location.href='/'">
+        Powrót do menu głównego
+    </button>
+</div>
+</body>
+</html>
