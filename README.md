@@ -10,7 +10,6 @@ Celem projektu jest stworzenie aplikacji, która wykorzystuje modele sztucznej i
 - Wczytanie zdjęcia przez użytkownika w aplikacji webowej.
 - Rozpoznanie zwierzęcia za pomocą trzech modeli: MobileNetV2, NASNetMobile, Xception.
 - Wyświetlenie wyniku dla każdego modelu wraz z prawdopodobieństwem.
-- Porównanie skuteczności modeli w oparciu o precyzję, recall i F1-score.
 
 ## Wykorzystane technologie
 - **Frontend:** Thymeleaf + CSS.
@@ -42,9 +41,3 @@ mvn spring-boot:run
 ### 3. Dostęp do aplikacji
 Aplikacja będzie dostępna pod adresem: http://localhost:8080.
 
-
-## Porównanie modeli
-Każdy model został przetestowany na tym samym zbiorze testowym, a wyniki oceniono na podstawie precyzji, recall i F1-score.
-Wyniki dostępne są a poniższym wykresie:
-##TODO
-![screenshot](python-backend/models/wykres.png)
